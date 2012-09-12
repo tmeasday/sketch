@@ -4,6 +4,7 @@
     "branch": "auth-model-support"
   },
   "packages": {
-    "models": {"path": "../../meteor/meteor-models"}
+    "models": {"path": "../../meteor/meteor-models"},
+    "recorder": {"path": "../../meteor/meteor-recorder"}
   }
 }

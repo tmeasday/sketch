@@ -5,7 +5,6 @@ class Path extends Model
     Model.call(this, attrs)
     
   addPoint: (point) ->
-    console.log(@attributes.points)
     if @attributes.points
       @save({$push: {points: point}})
     else

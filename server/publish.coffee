@@ -6,3 +6,6 @@ Paths.allow
   insert: (u, d) -> true
   update: (u, ds, f, m) -> true
   remove: (u, ds) -> true
+
+Recordings.allow
+  insert: (u, d) -> true
