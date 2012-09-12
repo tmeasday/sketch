@@ -1,10 +1,16 @@
 Meteor.subscribe 'paths'
 Paths.find().observe
+  added: (path) -> 
+    app.canvas.drawPath(path)
   changed: (path) ->
     app.canvas.drawPath(path)
 
 app = {}
 app.canvas = new SketchCanvas
+
+currentPath = ->
+  pathId = Session.get('currentPathId')
+  Paths.findOne(pathId) if pathId
 
 Meteor.startup ->
   # ensure we start a new path
@@ -13,13 +19,8 @@ Meteor.startup ->
   cvs = app.canvas.init(document.getElementsByTagName('article')[0])
   
   $(cvs).on 'drag', (e) ->
+    path = currentPath() || new Path()
     
-    # todo -> create models
-    pathId = Session.get('currentPathId')
-    pathId ||= Paths.insert({})
-    Session.set('currentPathId', pathId)
-    
-    point = {x: e.offsetX, y: e.offsetY}
-    
-    Paths.update(pathId, {$push: {points: point}})
+    path.addPoint({x: e.offsetX, y: e.offsetY})
+    Session.set('currentPathId', path.id)
     
