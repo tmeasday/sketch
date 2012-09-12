@@ -16,9 +16,6 @@ class SketchCanvas
     @canvas
   
   drawPath: (path) ->
-    console.log(path);
-    console.log(path.attributes.points);
-    
     points = path.attributes.points.slice(0)
     
     start = points.unshift()
