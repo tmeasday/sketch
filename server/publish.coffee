@@ -9,3 +9,8 @@ Paths.allow
 
 Recordings.allow
   insert: (u, d) -> true
+
+Meteor.accounts.onCreateUser (options, extra, user) ->
+  user.color = randomColor()
+  user
+  

@@ -1,9 +1,9 @@
 Meteor.subscribe 'paths'
 Paths.find().observe
   added: (path) -> 
-    app.canvas.drawPath(path)
+    app.canvas.drawPath(path, Meteor.user().color)
   changed: (path) ->
-    app.canvas.drawPath(path)
+    app.canvas.drawPath(path, Meteor.user().color)
 
 app = {}
 app.canvas = new SketchCanvas
@@ -11,6 +11,9 @@ app.canvas = new SketchCanvas
 currentPath = ->
   pathId = Session.get('currentPathId')
   Paths.findOne(pathId) if pathId
+
+Template.buttons.color = -> 
+  Meteor.user() && Meteor.user().color
 
 Template.buttons.events
   'click .reset': ->
@@ -21,6 +24,8 @@ Meteor.startup ->
   Session.set('currentPathId', null)
   
   cvs = app.canvas.init(document.getElementsByTagName('article')[0])
+  
+  Meteor.deps.await_once((-> not Meteor.user()), -> Meteor.loginAnonymously())
   
   $(cvs).on('dragstart', (e) -> 
     path = new Path()

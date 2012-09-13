@@ -9,13 +9,14 @@ class SketchCanvas
   
     # set some preferences for our line drawing.
     @ctx.fillStyle = "solid"
-    @ctx.strokeStyle = "#ECD018"
     @ctx.lineWidth = 5
     @ctx.lineCap = "round"
     
     @canvas
   
-  drawPath: (path) ->
+  drawPath: (path, color) ->
+    @ctx.strokeStyle = color
+    
     points = path.attributes.points.slice(0)
     
     start = points.unshift()
