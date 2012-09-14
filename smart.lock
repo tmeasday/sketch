@@ -1,20 +1,18 @@
 {
   "meteor": {
-    "git": "https://github.com/tmeasday/meteor.git",
-    "branch": "auth-model-support",
-    "commit": "2a36a9ee61ce25fe0185bbc5c8ddf9c4564737ba"
+    "path": "../../meteor/meteor"
   },
   "dependencies": {
     "basePackages": {
-      "models": {},
+      "models": {
+        "path": "../../meteor/meteor-models"
+      },
       "recorder": {},
       "accounts-anonymous": {}
     },
     "packages": {
       "models": {
-        "git": "https://github.com/tmeasday/meteor-models.git",
-        "tag": "v0.1.0",
-        "commit": "3381d69b49136515e3b298c987aac27475febf92"
+        "path": "../../meteor/meteor-models"
       },
       "recorder": {
         "git": "https://github.com/tmeasday/meteor-recorder.git",

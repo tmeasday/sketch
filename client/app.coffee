@@ -1,9 +1,9 @@
 Meteor.subscribe 'paths'
 Paths.find().observe
   added: (path) -> 
-    app.canvas.drawPath(path, Meteor.user().color)
+    app.canvas.drawPath(path)
   changed: (path) ->
-    app.canvas.drawPath(path, Meteor.user().color)
+    app.canvas.drawPath(path)
 
 app = {}
 app.canvas = new SketchCanvas
@@ -28,18 +28,19 @@ Meteor.startup ->
   Meteor.deps.await_once((-> not Meteor.user()), -> Meteor.loginAnonymously())
   
   $(cvs).on('dragstart', (e) -> 
-    path = new Path()
+    path = new Path({color: Meteor.user().color})
     path.addPoint({x: e.offsetX, y: e.offsetY})
     Session.set('currentPathId', path.id)
     
   ).on('drag', (e) ->
-    path = currentPath() || new Path()
+    path = currentPath() || new Path({color: Meteor.user().color})
     
     path.addPoint({x: e.offsetX, y: e.offsetY})
     Session.set('currentPathId', path.id)
   ).on('dragend', (e) ->
-    path = currentPath() || new Path()
-    path.addPoint({x: e.offsetX, y: e.offsetY})
+    path = currentPath()
+    if path
+      path.addPoint({x: e.offsetX, y: e.offsetY})
     
     Session.set('currentPathId', null)
   )

@@ -1,10 +1,9 @@
 {
   "meteor": {
-    "git": "https://github.com/tmeasday/meteor.git",
-    "branch": "auth-model-support"
+    "path": "../../meteor/meteor"
   },
   "packages": {
-    "models": {},
+    "models": {"path": "../../meteor/meteor-models"},
     "recorder": {},
     "accounts-anonymous": {}
   }

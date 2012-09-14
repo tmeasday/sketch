@@ -14,8 +14,8 @@ class SketchCanvas
     
     @canvas
   
-  drawPath: (path, color) ->
-    @ctx.strokeStyle = color
+  drawPath: (path) ->
+    @ctx.strokeStyle = path.attributes.color
     
     points = path.attributes.points.slice(0)
     
