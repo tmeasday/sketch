@@ -3,9 +3,15 @@
 </head>
 
 <body>
-  <article></article>
-  {{>buttons}}
+  {{> canvas}}
+  {{> buttons}}
 </body>
+
+<template name="canvas">
+  <canvas height="400" width="800">
+    {{paths}}
+  </canvas>
+</template>
 
 <template name="buttons">
   <button class="reset">Reset</button>

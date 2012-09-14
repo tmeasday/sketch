@@ -1,20 +1,26 @@
 class SketchCanvas
-  init: (@element) ->
-    @canvas = document.createElement 'canvas'
-    @canvas.height = 400
-    @canvas.width = 800
-    @element.appendChild(@canvas)
-  
+  constructor: (@canvas) ->
     @ctx = @canvas.getContext("2d")
   
     # set some preferences for our line drawing.
     @ctx.fillStyle = "solid"
     @ctx.lineWidth = 5
     @ctx.lineCap = "round"
-    
-    @canvas
+  
+  clear: ->
+    # Store the current transformation matrix
+    @ctx.save();
+
+    # Use the identity matrix while clearing the canvas
+    @ctx.setTransform(1, 0, 0, 1, 0, 0);
+    @ctx.clearRect(0, 0, @canvas.width, @canvas.height);
+
+    # Restore the transform
+    @ctx.restore();
   
   drawPath: (path) ->
+    console.log('drawing path')
+    
     @ctx.strokeStyle = path.attributes.color
     
     points = path.attributes.points.slice(0)
