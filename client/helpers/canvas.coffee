@@ -1,12 +1,12 @@
 class SketchCanvas
   constructor: (@canvas) ->
     @ctx = @canvas.getContext("2d")
-  
+      
     # set some preferences for our line drawing.
     @ctx.fillStyle = "solid"
     @ctx.lineWidth = 5
     @ctx.lineCap = "round"
-  
+    
   clear: ->
     # Store the current transformation matrix
     @ctx.save();
@@ -18,9 +18,10 @@ class SketchCanvas
     # Restore the transform
     @ctx.restore();
   
+  drawBasicPath: -> 
+    @drawPath({attributes: {color: 'red', points: [{x:10, y:10}, {x: 100; y:100}]}})
+  
   drawPath: (path) ->
-    console.log('drawing path')
-    
     @ctx.strokeStyle = path.attributes.color
     
     points = path.attributes.points.slice(0)
