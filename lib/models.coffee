@@ -11,4 +11,4 @@ class Path extends Model
       @update_attribute('points', [point])
 
 
-Paths = Path._collection = new Meteor.Collection('paths', null, null, Path)
+Paths = Path._collection = new Meteor.Collection('paths', null, null, null, Path)
