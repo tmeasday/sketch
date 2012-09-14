@@ -1,3 +1,2 @@
-Meteor.publish 'paths', ->
-  # TODO -- only find the paths that have changed since X
-  Paths.find({});
+Meteor.publish 'paths', (since) ->
+  Paths.find({createdAt: {$gt: since}});

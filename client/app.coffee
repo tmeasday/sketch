@@ -1,4 +1,6 @@
-Meteor.subscribe 'paths'
+Meteor.autosubscribe ->
+  Meteor.subscribe 'paths', Session.get('pathsSince')
+
 Paths.find().observe
   added: (path) -> 
     app.canvas.drawPath(path)
@@ -17,10 +19,11 @@ Template.buttons.color = ->
 
 Template.buttons.events
   'click .reset': ->
-    Paths.find().forEach (p) -> p.destroy()
+    Session.set('pathsSince', new Date().getTime())
 
 Meteor.startup ->
   Session.set('currentColor', randomColor())
+  Session.set('pathsSince', new Date().getTime())
   
   # ensure we start a new path
   Session.set('currentPathId', null)
