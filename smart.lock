@@ -1,28 +1,24 @@
 {
   "meteor": {
-    "path": "../../meteor/meteor"
+    "git": "https://github.com/tmeasday/meteor.git",
+    "branch": "model-support",
+    "commit": "6b675d62efa04a62caf153da5e61249e0420516a"
   },
   "dependencies": {
     "basePackages": {
-      "models": {
-        "path": "../../meteor/meteor-models"
-      },
-      "recorder": {},
-      "accounts-anonymous": {}
+      "models": {},
+      "recorder": {}
     },
     "packages": {
       "models": {
-        "path": "../../meteor/meteor-models"
+        "git": "https://github.com/tmeasday/meteor-models.git",
+        "tag": "v0.1.1",
+        "commit": "310606a6bbc12c8c5394323e035fe7db441e2ca6"
       },
       "recorder": {
         "git": "https://github.com/tmeasday/meteor-recorder.git",
-        "tag": "v0.1.0",
-        "commit": "584b66634397fc12f52139a3e0aa44513f64539d"
-      },
-      "accounts-anonymous": {
-        "git": "https://github.com/tmeasday/meteor-accounts-anonymous.git",
-        "tag": "v0.0.1",
-        "commit": "f013415fd4b84df8cc96f5149f0fa6d35dfa8b12"
+        "tag": "v0.2.0",
+        "commit": "6c1853e4560320029e449c97b74eea5e3ecfaa3b"
       },
       "deps-extensions": {
         "git": "https://github.com/tmeasday/meteor-deps-extensions.git",

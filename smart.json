@@ -1,10 +1,10 @@
 {
   "meteor": {
-    "path": "../../meteor/meteor"
+    "git": "https://github.com/tmeasday/meteor.git",
+    "branch": "model-support"
   },
   "packages": {
-    "models": {"path": "../../meteor/meteor-models"},
-    "recorder": {},
-    "accounts-anonymous": {}
+    "models": {},
+    "recorder": {}
   }
 }

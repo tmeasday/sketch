@@ -13,27 +13,27 @@ currentPath = ->
   Paths.findOne(pathId) if pathId
 
 Template.buttons.color = -> 
-  Meteor.user() && Meteor.user().color
+  Session.get('currentColor')
 
 Template.buttons.events
   'click .reset': ->
     Paths.find().forEach (p) -> p.destroy()
 
 Meteor.startup ->
+  Session.set('currentColor', randomColor())
+  
   # ensure we start a new path
   Session.set('currentPathId', null)
   
   cvs = app.canvas.init(document.getElementsByTagName('article')[0])
   
-  Meteor.deps.await_once((-> not Meteor.user()), -> Meteor.loginAnonymously())
-  
   $(cvs).on('dragstart', (e) -> 
-    path = new Path({color: Meteor.user().color})
+    path = new Path({color: Session.get('currentColor')})
     path.addPoint({x: e.offsetX, y: e.offsetY})
     Session.set('currentPathId', path.id)
     
   ).on('drag', (e) ->
-    path = currentPath() || new Path({color: Meteor.user().color})
+    path = currentPath() || new Path({color: Session.get('currentColor')})
     
     path.addPoint({x: e.offsetX, y: e.offsetY})
     Session.set('currentPathId', path.id)
