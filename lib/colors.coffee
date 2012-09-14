@@ -1,3 +1,5 @@
 randomColor = ->
-  ['red', 'green', 'blue', 'yellow'][Math.floor(Math.random() * 4)]
+  colors = ['red', 'green', 'blue', 'yellow', 'pink', 'black', 'purple',
+    'orange', 'magenta', 'grey', 'maroon']
+  colors[Math.floor(Math.random() * colors.length)]
   
