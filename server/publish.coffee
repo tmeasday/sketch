@@ -3,11 +3,13 @@ Meteor.publish 'paths', (since) ->
 
 Paths.allow
   insert: (u, d) -> 
-    console.log(d)
     d.createdAt = new Date().getTime();
-    console.log(d)
     true
-  update: (u, ds, f, m) -> true
+  update: (u, ds, f, m) -> 
+    # a little hack, don't allow us to set createdAt
+    if m.$set and m.$set.createdAt 
+      delete m.$set.createdAt 
+    true
   remove: (u, ds) -> true
 
 Recordings.allow
