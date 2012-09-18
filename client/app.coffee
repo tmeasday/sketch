@@ -6,13 +6,17 @@ currentPath = ->
   Paths.findOne(pathId) if pathId
 
 Template.canvas.rendered = ->
-  canvas = new SketchCanvas(this.find('canvas'))
-  Paths.find().observe
-    added: (path) -> canvas.drawPath(path)
-    # draw over the top, no big deal
-    changed: (path) -> canvas.drawPath(path)
-    # we only ever delete all the paths at once, so this is fine.
-    removed: (path) -> canvas.clear()
+  unless this.canvas
+    this.canvas = new SketchCanvas(this.find('canvas'))
+    this.handle = Paths.find().observe
+      added: (path) => this.canvas.drawPath(path)
+      # draw over the top, no big deal
+      changed: (path) => this.canvas.drawPath(path)
+      # we only ever delete all the paths at once, so this is fine.
+      removed: (path) => this.canvas.clear()
+
+Template.canvas.destroyed = ->
+  this.handle.stop()
 
 Template.buttons.color = -> Session.get('currentColor')
 
