@@ -7,9 +7,7 @@
   "dependencies": {
     "basePackages": {
       "models": {},
-      "recorder": {
-        "path": "../../meteor/meteor-recorder"
-      }
+      "recorder": {}
     },
     "packages": {
       "models": {
@@ -18,7 +16,9 @@
         "commit": "310606a6bbc12c8c5394323e035fe7db441e2ca6"
       },
       "recorder": {
-        "path": "../../meteor/meteor-recorder"
+        "git": "https://github.com/tmeasday/meteor-recorder.git",
+        "tag": "v0.2.1",
+        "commit": "6d2a075cfa1000525d7f362267ab5e205b678713"
       },
       "deps-extensions": {
         "git": "https://github.com/tmeasday/meteor-deps-extensions.git",
