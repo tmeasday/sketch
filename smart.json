@@ -5,6 +5,6 @@
   },
   "packages": {
     "models": {},
-    "recorder": {}
+    "recorder": {"path": "../../meteor/meteor-recorder"}
   }
 }

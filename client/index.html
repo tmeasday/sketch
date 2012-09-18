@@ -3,8 +3,10 @@
 </head>
 
 <body>
+  <h1>Sketch demo</h1>
   {{> canvas}}
-  {{> buttons}}
+  {{> controls}}
+  {{> recordings}}
 </body>
 
 <template name="canvas">
@@ -12,7 +14,26 @@
   </canvas>
 </template>
 
-<template name="buttons">
-  <button class="reset">Reset</button>
-  <div class="color" style="width: 50px; height: 50px; background-color: {{color}}"></div>
+<template name="controls">
+  <div class="controls">
+    <div class="color" style="background-color: {{color}}"></div>
+    <button class="btn reset">Clear Canvas</button>
+    
+    {{#if recording}}
+      <button class="btn cancel">Cancel</button>
+      <button class="btn save">Save</button>
+      <input type="text" name="saveName" placeholder="Name your recording"></input>
+    {{else}}
+      <button class="btn record">Record</button>
+    {{/if}}
+  </div>
+</template>
+
+<template name="recordings">
+  <h2>All Recordings</h2>
+  <ul class="recordings">
+    {{#each recordings}}
+      <li><button class="btn run">Run</button> {{name}}</li>
+    {{/each}}
+  </ul>
 </template>

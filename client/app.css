@@ -1,1 +1,46 @@
-/* CSS declarations go here */
+body {
+  margin: 20px
+}
+
+canvas {
+  background: #eee;
+}
+
+.color {
+  width: 28px;
+  height: 28px;
+  border-radius: 5px;
+  float: left;
+  margin: 0 10px;
+}
+
+.controls {
+  margin: 10px 0;
+}
+
+.controls input {
+  margin: 0;
+}
+
+h2, h1 {
+  margin: 20px 0;
+}
+
+.recordings {
+  width: 600px;
+  overflow: hidden;
+}
+
+.recordings li {
+  float: left;
+  width: 200px;
+  margin: 10px 0;
+  
+  list-style: none;
+  font-weight: bold;
+  font-size: 14px;
+}
+
+.recordings li button {
+  margin-right: 5px;
+}

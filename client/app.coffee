@@ -18,13 +18,30 @@ Template.canvas.rendered = ->
 Template.canvas.destroyed = ->
   this.handle.stop()
 
-Template.buttons.color = -> Session.get('currentColor')
+Template.controls.color = -> Session.get('currentColor')
 
-Template.buttons.events
+Template.controls.recording = -> Recorder.recording()
+
+Template.controls.events
   'click .reset': ->
     Session.set('pathsSince', new Date().getTime())
   'click .color': ->
     Session.set('currentColor', randomColor())
+  'click .record': ->
+    Recorder.start('Paths')
+  'click .save': ->
+    name = $('[name=saveName]').val()
+    if name
+      Recorder.save(name)
+    else
+      alert('Please provide a name for the recording')
+  'click .cancel': ->
+    Recorder.cancel()
+
+Template.recordings.recordings = -> Recordings.find()
+Template.recordings.events
+  'click .run': ->
+    Recorder.replay(this.name)
 
 Meteor.startup ->
   Session.set('currentColor', randomColor())
