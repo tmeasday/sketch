@@ -5,6 +5,7 @@
   },
   "packages": {
     "models": {},
-    "recorder": {}
+    "recorder": {},
+    "fork-me": {}
   }
 }
