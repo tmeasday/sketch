@@ -9,6 +9,10 @@ class Path extends Model
       @save({$push: {points: point}})
     else
       @update_attribute('points', [point])
-
+  
+  addPointFromEvent: (event, offset) ->
+    @addPoint
+      x: event.offsetX || event.pageX - offset.left
+      y: event.offsetY || event.pageY - offset.top
 
 Paths = Path._collection = new Meteor.Collection('paths', null, null, null, Path)

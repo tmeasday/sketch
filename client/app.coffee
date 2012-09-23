@@ -50,20 +50,24 @@ Meteor.startup ->
   # ensure we start a new path
   Session.set('currentPathId', null)
   
+  # XXX: make sure that the canvas offset never changes
+  offset = $('canvas').offset()
   $('canvas').on('dragstart', (e) -> 
     path = new Path({color: Session.get('currentColor')})
-    path.addPoint({x: e.offsetX, y: e.offsetY})
+    
+    path.addPointFromEvent(e, offset)
     Session.set('currentPathId', path.id)
     
   ).on('drag', (e) ->
     path = currentPath() || new Path({color: Session.get('currentColor')})
     
-    path.addPoint({x: e.offsetX, y: e.offsetY})
+    offset = $('canvas').offset()
+    path.addPointFromEvent(e, offset)
     Session.set('currentPathId', path.id)
   ).on('dragend', (e) ->
     path = currentPath()
     if path
-      path.addPoint({x: e.offsetX, y: e.offsetY})
+      path.addPointFromEvent(e, offset)
     
     Session.set('currentPathId', null)
   )
