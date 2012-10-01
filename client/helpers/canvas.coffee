@@ -7,16 +7,26 @@ class SketchCanvas
     @ctx.lineWidth = 5
     @ctx.lineCap = "round"
     
+    $(window).on "resize", => @setSize()
+    @setSize()
+    
+  setSize: ->
+    w = $(window).width()
+    h = $(window).height()
+    
+    $(@canvas).attr('width', "#{w}px")
+    $(@canvas).attr('height', "#{h}px");
+    
   clear: ->
     # Store the current transformation matrix
-    @ctx.save();
+    @ctx.save()
 
     # Use the identity matrix while clearing the canvas
-    @ctx.setTransform(1, 0, 0, 1, 0, 0);
-    @ctx.clearRect(0, 0, @canvas.width, @canvas.height);
+    @ctx.setTransform(1, 0, 0, 1, 0, 0)
+    @ctx.clearRect(0, 0, @canvas.width, @canvas.height)
 
     # Restore the transform
-    @ctx.restore();
+    @ctx.restore()
   
   drawBasicPath: -> 
     @drawPath({attributes: {color: 'red', points: [{x:10, y:10}, {x: 100; y:100}]}})
@@ -31,6 +41,7 @@ class SketchCanvas
     @ctx.moveTo(start.x, start.y)
     
     for point in points
+      console.log point.x
       @ctx.lineTo(point.x,point.y)
       @ctx.stroke()
     
