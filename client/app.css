@@ -26,29 +26,20 @@ canvas {
   bottom: 10px;
 }
 
-.controls input {
-  margin: 0;
-}
-
 h2, h1 {
   margin: 20px 0;
 }
 
-.recordings {
-  width: 600px;
-  overflow: hidden;
-}
-
-.recordings li {
-  float: left;
-  width: 200px;
-  margin: 10px 0;
+.overlay {
+  position: absolute;
+  top: 100px;
+  left: 50%;
+  width: 400px;
+  height: 400px;
+  margin-left: -200px;
+  z-index: 1;
   
-  list-style: none;
-  font-weight: bold;
-  font-size: 14px;
-}
-
-.recordings li button {
-  margin-right: 5px;
+  background: #fff;
+  border: 1px solid black;
+  padding: 20px;
 }

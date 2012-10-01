@@ -25,6 +25,24 @@ Template.controls.events
     Session.set('pathsSince', new Date().getTime())
   'click .color': ->
     Session.set('currentColor', randomColor())
+  'click .send': ->
+    Session.set('saving', true)
+
+Template.introOverlay.helpers
+  intro: -> !Session.get('noIntro')
+
+Template.introOverlay.events
+  'click .close': -> Session.set('noIntro', true)
+
+Template.saveOverlay.helpers
+  saving: -> Session.get('saving')
+
+Template.saveOverlay.events
+  'click .close': -> Session.set('saving', false)
+  'submit': (e) ->
+    e.preventDefault()
+    # for now
+    Session.set('saving', false)
 
 Meteor.startup ->
   Session.set('currentColor', randomColor())
