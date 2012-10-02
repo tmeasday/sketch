@@ -39,6 +39,9 @@ Template.introOverlay.events
 Template.saveOverlay.preserve(['.save-wrap'])
 Template.saveOverlay.helpers
   saveOpen: -> 'open' if Session.get('saving')
+  canvasDataURI: ->
+    canvas = $('canvas').get(0)
+    canvas.toDataURL('image/png') if canvas
 
 Template.saveOverlay.events
   'click .close-info': -> Session.set('saving', false)

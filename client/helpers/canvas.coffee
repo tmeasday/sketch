@@ -6,17 +6,7 @@ class SketchCanvas
     @ctx.fillStyle = "solid"
     @ctx.lineWidth = 5
     @ctx.lineCap = "round"
-    
-    $(window).on "resize", => @setSize()
-    @setSize()
-    
-  setSize: ->
-    w = $(window).width()
-    h = $(window).height()
-    
-    $(@canvas).attr('width', "#{w}px")
-    $(@canvas).attr('height', "#{h}px");
-    
+  
   clear: ->
     # Store the current transformation matrix
     @ctx.save()

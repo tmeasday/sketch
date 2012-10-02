@@ -222,3 +222,8 @@ canvas {
 	margin: 10px 0;
 }
 
+/* fixme */
+.save-info .preview {
+  border: 1px solid #999;
+  max-width: 100px;
+}

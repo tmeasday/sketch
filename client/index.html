@@ -15,7 +15,7 @@
 </body>
 
 <template name="canvas">
-  <canvas></canvas>
+  <canvas width="1024" height="768"></canvas>
 </template>
 
 <template name="controls">
@@ -55,6 +55,8 @@
 		<input type="text" name="email" placeholder="email address"><br>
 		<input type="image" src="/img/save-drawing-btn.png" class="save-drawing-btn"></input>
 		</form>
+    
+    <img class="preview" src="{{canvasDataURI}}"></img>
 
 		   <span class="logo-accent">
 		   <img src="/img/LACMA-logo.png" alt="LACMA-logo" width="86" height="39"/>
