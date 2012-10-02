@@ -70,8 +70,9 @@ body {
 }
 
 .wrap {
+  position: relative;
 	width: 1024px;
-	height: 768px;
+	height: 748px;
 	margin: 0 auto;
 }
 
@@ -84,12 +85,15 @@ canvas {
 /* ICONS */
 
 .ui-wrap {
-	width: 1024px;
-	margin: 0 auto -100px;
+  position: absolute;
+  bottom: 0;
+  height: 100px;
+  left: 0;
+  width: 1024px;
+  overflow: hidden;
 }
 .controls {
 	position: relative;
-	top: -60px;
 	left: 360px;
 	letter-spacing: 1px;
 	font-family: Verdana, Geneva, sans-serif;
@@ -108,7 +112,6 @@ canvas {
 
 .clear-btn[type="image"] {
 	position: relative;
-	top: -40px;
 	left: 40px;
 	width: 54px !important;
 	height: 75px !important;
@@ -118,7 +121,7 @@ canvas {
 	width: 58px !important;
 	height: 68px !important;
 	position: relative;
-	top: -36px;
+	top: -4px;
 	left: 145px;
 }
 
@@ -129,7 +132,7 @@ canvas {
 	margin: 0 auto;
 	position: absolute;
   opacity: 0;
-	height: 768px;
+	height: 748px;
   /* so the z-index stays at 1 until the transition is over */
   transition: opacity 500ms linear, z-index 0 linear 500ms;
   -webkit-transition: opacity 500ms linear, z-index 0 linear 500ms;

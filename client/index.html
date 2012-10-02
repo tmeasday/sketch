@@ -3,6 +3,8 @@
   	<link rel="stylesheet" media="all" href="/styleSheets/style.css" type="text/css" />
   	<link href='http://fonts.googleapis.com/css?family=Josefin+Sans:400,600,700,400italic,600italic,700italic' rel='stylesheet' type='text/css'>
 	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+  <meta name="viewport" content="width=device-width, height=device-height, user-scalable=no" >
+  <meta name="apple-mobile-web-app-capable" content="yes" />
 </head>
 
 <body>
@@ -10,12 +12,12 @@
     {{> introOverlay}}
     {{> saveOverlay}}
     {{> canvas}}
+    {{> controls}}
   </div>
-  {{> controls}}
 </body>
 
 <template name="canvas">
-  <canvas width="1024" height="768"></canvas>
+  <canvas width="1024" height="748"></canvas>
 </template>
 
 <template name="controls">
