@@ -18,6 +18,7 @@ Template.canvas.rendered = ->
 Template.canvas.destroyed = ->
   this.handle.stop()
 
+Template.controls.preserve ['.controls']
 Template.controls.hidden = -> 
   if !Session.get('noIntro') or Session.get('saving')
     'hidden'
@@ -28,12 +29,14 @@ Template.controls.events
   'click .save-btn': ->
     Session.set('saving', true)
 
+Template.introOverlay.preserve(['.info-wrap'])
 Template.introOverlay.helpers
   introOpen: -> 'open' unless Session.get('noIntro')
 
 Template.introOverlay.events
   'click': -> Session.set('noIntro', true)
 
+Template.saveOverlay.preserve(['.save-wrap'])
 Template.saveOverlay.helpers
   saveOpen: -> 'open' if Session.get('saving')
 

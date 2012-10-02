@@ -96,10 +96,14 @@ canvas {
 	text-shadow: 0px 0px 2px #999;
 	z-index: 9999999999;
 	height: 100px;
+  opacity: 1;
+  transition: opacity 500ms linear;
+  -webkit-transition: opacity 500ms linear;
+  -moz-transition: opacity 500ms linear;
 }
 
 .controls.hidden {
-  display: none;
+  opacity: 0;
 }
 
 .clear-btn[type="image"] {
@@ -121,16 +125,24 @@ canvas {
 /* OVERLAYS */
 .overlay {
 	width: 1024px;
-	height: 768px;
 	background: url(/img/lightbox-bg.png) repeat;
 	margin: 0 auto;
 	position: absolute;
-	z-index: 1;
-  display: none;
+  opacity: 0;
+	height: 768px;
+  /* so the z-index stays at 1 until the transition is over */
+  transition: opacity 500ms linear, z-index 0 linear 500ms;
+  -webkit-transition: opacity 500ms linear, z-index 0 linear 500ms;
+  -moz-transition: opacity 500ms linear, z-index 0 linear 500ms;
 }
 
 .overlay.open {
-  display: block;
+  opacity: 1;
+	z-index: 1;
+  /* z-index changes immediately to 1 when coming here */
+  transition: opacity 500ms linear;
+  -webkit-transition: opacity 500ms linear;
+  -moz-transition: opacity 500ms linear;
 }
 
 /* APP INFO */
