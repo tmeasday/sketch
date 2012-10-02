@@ -73,6 +73,7 @@ body {
   position: relative;
 	width: 1024px;
 	height: 748px;
+  overflow: hidden;
 	margin: 0 auto;
 }
 
