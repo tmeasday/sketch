@@ -31,7 +31,6 @@ class SketchCanvas
     @ctx.moveTo(start.x, start.y)
     
     for point in points
-      console.log point.x
       @ctx.lineTo(point.x,point.y)
       @ctx.stroke()
     
