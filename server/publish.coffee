@@ -12,5 +12,13 @@ Paths.allow
     true
   remove: (u, ds) -> true
 
-Recordings.allow
-  insert: (u, d) -> true
+
+Meteor.methods
+  emailPicture: (to, address, dataURI) ->
+    console.log "mailing to #{address}"
+    # FIXME -- get emailing details
+    Email.send
+      from: 'tom@bindle.me'
+      to: "#{to} <#{address}>"
+      subject: 'Your Sketch'
+      html: "<img src='#{dataURI}'></img>"

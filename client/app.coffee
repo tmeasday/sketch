@@ -5,6 +5,10 @@ currentPath = ->
   pathId = Session.get('currentPathId')
   Paths.findOne(pathId) if pathId
 
+canvasDataURL = ->
+  canvas = $('canvas').get(0)
+  canvas.toDataURL('image/png') if canvas
+
 Template.canvas.rendered = ->
   unless this.canvas
     this.canvas = new SketchCanvas(this.find('canvas'))
@@ -39,15 +43,18 @@ Template.introOverlay.events
 Template.saveOverlay.preserve(['.save-wrap'])
 Template.saveOverlay.helpers
   saveOpen: -> 'open' if Session.get('saving')
-  canvasDataURI: ->
-    canvas = $('canvas').get(0)
-    canvas.toDataURL('image/png') if canvas
+  canvasDataURL: -> canvasDataURL()
 
 Template.saveOverlay.events
   'click .close-info': -> Session.set('saving', false)
-  'submit': (e) ->
+  'submit': (e, template) ->
     e.preventDefault()
-    # for now
+    
+    to = template.find('[name=fullname]').value
+    email = template.find('[name=email]').value
+    dataURL = canvasDataURL()
+    
+    Meteor.call('emailPicture', to, email, dataURL)
     Session.set('saving', false)
 
 Meteor.startup ->
