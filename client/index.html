@@ -3,32 +3,31 @@
   	<link rel="stylesheet" media="all" href="/styleSheets/style.css" type="text/css" />
   	<link href='http://fonts.googleapis.com/css?family=Josefin+Sans:400,600,700,400italic,600italic,700italic' rel='stylesheet' type='text/css'>
 	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-  	<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.7/jquery.min.js"></script>
-	<script src="http://ajax.googleapis.com/ajax/libs/jqueryui/1.8/jquery-ui.min.js"></script>
-	<script type="text/javascript">
-	$(document).ready(function(){
-	$(".app-info").fadeIn(700);
-	$(".close-info,.app-info").click(function() {
-	$(".info-wrap,.save-wrap").fadeOut(500);
-	$(".controls").fadeIn(500);			
-	}); 
-	$(".save-btn").click(function() {
-	$(".save-wrap,.save-info").fadeIn(500);
-	$(".controls").fadeOut(500);			
-	}); 	
-	});
-	</script>
 </head>
 
 <body>
-  {{> canvas}}
+  <div class="wrap">
+    {{> introOverlay}}
+    {{> saveOverlay}}
+    {{> canvas}}
+  </div>
   {{> controls}}
-  {{> recordings}}
 </body>
 
 <template name="canvas">
-<div class="wrap">
-	<div class="info-wrap">
+  <canvas></canvas>
+</template>
+
+<template name="controls">
+	<div class="ui-wrap">
+	  <div class="controls {{hidden}}">
+		  <input type="image" src="/img/clear-btn.png" class="clear-btn reset"></input>
+		  <input type="image" src="/img/save-btn.png" class="save-btn"></input>
+	</div>
+</template>
+
+<template name="introOverlay">
+	<div class="info-wrap overlay {{introOpen}}">
 		<div class="app-info">
 		<div class="close-info"></div>
 		<h1>Drawing Surrealism</h1>
@@ -42,7 +41,10 @@
 		   </span>
 		</div>
 	</div>
-	<div class="save-wrap">
+</template>
+
+<template name="saveOverlay">
+	<div class="save-wrap overlay {{saveOpen}}">
 		<div class="save-info">
 		<div class="close-info"></div>
 		<h1>Save your drawing</h1>
@@ -59,19 +61,4 @@
 		   </span>
 		</div>
 	</div>
-	<canvas height="768" width="1024">
-	</canvas>
-</div>
-</template>
-
-<template name="controls">
-	<div class="ui-wrap">
-	  <div class="controls">
-		  <input type="image" src="/img/clear-btn.png" class="clear-btn reset"></input>
-		  <input type="image" src="/img/save-btn.png" class="save-btn"></input>
-	</div>
-</template>
-
-<template name="recordings">
-
 </template>

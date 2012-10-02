@@ -88,7 +88,6 @@ canvas {
 	margin: 0 auto -100px;
 }
 .controls {
-	display: none;
 	position: relative;
 	top: -60px;
 	left: 360px;
@@ -97,6 +96,10 @@ canvas {
 	text-shadow: 0px 0px 2px #999;
 	z-index: 9999999999;
 	height: 100px;
+}
+
+.controls.hidden {
+  display: none;
 }
 
 .clear-btn[type="image"] {
@@ -115,16 +118,22 @@ canvas {
 	left: 145px;
 }
 
-/* APP INFO */
-
-.info-wrap {
+/* OVERLAYS */
+.overlay {
 	width: 1024px;
 	height: 768px;
 	background: url(/img/lightbox-bg.png) repeat;
 	margin: 0 auto;
 	position: absolute;
 	z-index: 1;
+  display: none;
 }
+
+.overlay.open {
+  display: block;
+}
+
+/* APP INFO */
 
 .app-info {
 	background: url(/img/app-info-bg.jpg) repeat;
@@ -136,7 +145,6 @@ canvas {
 	padding: 50px 80px;
 	margin: 0 auto;
 	cursor: pointer;
-	display: none;
 }
 
 .app-info img {
@@ -173,17 +181,6 @@ canvas {
 }
 
 /* SAVE INFO */
-
-.save-wrap {
-	width: 1024px;
-	height: 768px;
-	background: url(/img/lightbox-bg.png) repeat;
-	margin: 0 auto;
-	position: absolute;
-	z-index: 1;
-	display: none;
-}
-
 .save-info {
 	background: url(/img/save-drawing-accent-bg.png) repeat;
 	height: 395px;
@@ -194,7 +191,6 @@ canvas {
 	padding: 50px 80px;
 	margin: 0 auto;
 	cursor: pointer;
-	display: none;
 }
 
 .save-info img {

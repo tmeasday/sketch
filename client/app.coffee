@@ -18,27 +18,27 @@ Template.canvas.rendered = ->
 Template.canvas.destroyed = ->
   this.handle.stop()
 
-Template.controls.color = -> Session.get('currentColor')
+Template.controls.hidden = -> 
+  if !Session.get('noIntro') or Session.get('saving')
+    'hidden'
 
 Template.controls.events
-  'click .reset': ->
+  'click .clear-btn': ->
     Session.set('pathsSince', new Date().getTime())
-  'click .color': ->
-    Session.set('currentColor', randomColor())
-  'click .send': ->
+  'click .save-btn': ->
     Session.set('saving', true)
 
 Template.introOverlay.helpers
-  intro: -> !Session.get('noIntro')
+  introOpen: -> 'open' unless Session.get('noIntro')
 
 Template.introOverlay.events
-  'click .close': -> Session.set('noIntro', true)
+  'click': -> Session.set('noIntro', true)
 
 Template.saveOverlay.helpers
-  saving: -> Session.get('saving')
+  saveOpen: -> 'open' if Session.get('saving')
 
 Template.saveOverlay.events
-  'click .close': -> Session.set('saving', false)
+  'click .close-info': -> Session.set('saving', false)
   'submit': (e) ->
     e.preventDefault()
     # for now
