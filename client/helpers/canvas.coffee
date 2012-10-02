@@ -6,6 +6,33 @@ class SketchCanvas
     @ctx.fillStyle = "solid"
     @ctx.lineWidth = 5
     @ctx.lineCap = "round"
+    
+  listen: ->
+    $(@canvas)
+      .on('mousedown touchstart', (e) => @start(e))
+      .on('mousemove touchmove', (e) => @drag(e))
+      .on('mouseup touchend touchcancel touchleave', (e) => @end(e))
+  
+  start: (e) ->
+    e.preventDefault()
+    $canvas = $(@canvas)
+    @offset = $canvas.offset()
+    
+    @path = new Path({color: Session.get('currentColor')})
+    @path.addPointFromEvent(e, @offset)
+  
+  drag: (e) ->
+    e.preventDefault()
+    # if we are dragging
+    @path.addPointFromEvent(e, @offset) if @path
+  
+  end: (e) ->
+    e.preventDefault()
+    @path.addPointFromEvent(e, @offset) if @path
+    @stop()
+  
+  stop: ->
+      @path = null
   
   clear: ->
     # Store the current transformation matrix

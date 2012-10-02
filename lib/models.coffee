@@ -11,6 +11,8 @@ class Path extends Model
       @update_attribute('points', [point])
   
   addPointFromEvent: (event, offset) ->
+    event = event.originalEvent.touches[0] if event.originalEvent.touches
+    
     @addPoint
       x: event.offsetX || event.pageX - offset.left
       y: event.offsetY || event.pageY - offset.top
