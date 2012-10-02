@@ -1,0 +1,216 @@
+/* LACMA Sketch 09-30-2012 */
+
+/* SGD RESET */
+html,body,div,span,applet,object,iframe,h1,h2,h3,h4,h5,h6,p,blockquote,pre,a,abbr,acronym,address,big,cite,code,del,dfn,em,font,img,ins,kbd,q,s,samp,small,strike,strong,sub,sup,tt,var,b,u,i,center,dl,dt,dd,ol,ul,li,fieldset,form,label,legend,table,caption,tbody,tfoot,thead,tr,th,td,nav,section,article,header,footer,section,header,footer,article,aside,hgroup {
+	border:0;
+	outline:0;
+	vertical-align:baseline;
+	background:transparent;
+	margin:0;
+	padding:0;
+}
+
+html {
+	background-color:#FFF;
+    overflow-y: scroll;
+    -webkit-text-size-adjust: none;
+    height: 100%;
+}
+
+html,body{
+	height:100%;
+	font-family: 'Josefin Sans', sans-serif;
+	font-weight: 400;
+}
+
+p,h1,h2,h3,h4,h5,h6,h7,li,li li,li ul,li ul li,label,dd,dt,input,a {
+	color: #333;
+	font-weight: 400;
+	line-height: 18px;
+}
+
+h1 {
+	font-size: 2em;
+	font-weight: 700;
+}
+
+h2 {
+	font-size: 1.4em;
+	font-weight: 700;
+	font-style: italic;
+	letter-spacing: 0;
+}
+
+
+p {
+	font-size: 1.3em;
+	font-weight: 600;
+	line-height: 1.4em;
+}
+
+.clear-margin {
+	margin: 0 !important;
+}
+
+.clear-pixie {
+	clear: both;
+}
+
+input, textarea {
+	width: 300px;
+}
+/* END RESET */
+
+
+/* SITE STYLES */
+
+body {
+	margin: 0;
+	
+}
+
+.wrap {
+	width: 1024px;
+	height: 768px;
+	margin: 0 auto;
+}
+
+canvas {
+	background: url(/img/canvas-bg.jpg) no-repeat;
+	position: relative;
+}
+
+
+/* ICONS */
+
+.ui-wrap {
+	width: 1024px;
+	margin: 0 auto -100px;
+}
+.controls {
+	display: none;
+	position: relative;
+	top: -60px;
+	left: 360px;
+	letter-spacing: 1px;
+	font-family: Verdana, Geneva, sans-serif;
+	text-shadow: 0px 0px 2px #999;
+	z-index: 9999999999;
+	height: 100px;
+}
+
+.clear-btn[type="image"] {
+	position: relative;
+	top: -40px;
+	left: 40px;
+	width: 54px !important;
+	height: 75px !important;
+}
+
+.save-btn[type="image"] {
+	width: 58px !important;
+	height: 68px !important;
+	position: relative;
+	top: -36px;
+	left: 145px;
+}
+
+/* APP INFO */
+
+.info-wrap {
+	width: 1024px;
+	height: 768px;
+	background: url(/img/lightbox-bg.png) repeat;
+	margin: 0 auto;
+	position: absolute;
+	z-index: 1;
+}
+
+.app-info {
+	background: url(/img/app-info-bg.jpg) repeat;
+	height: 395px;
+	width: 475px;
+	top: 100px;
+	position: relative;
+	z-index: 99999999999;
+	padding: 50px 80px;
+	margin: 0 auto;
+	cursor: pointer;
+	display: none;
+}
+
+.app-info img {
+	margin: 0 0 10px;
+}
+
+.app-info h2 {
+	float: left;
+	margin: 0 120px 0 5px;
+}
+
+.close-info {
+	background: url(/img/close-info-icon.png) no-repeat;
+	height: 24px;
+	width: 24px;
+	position: absolute;
+	cursor: pointer;
+	right: 2px;
+	top: 2px;
+}
+
+.logo-accent {
+	float: right;
+	position: relative;
+	border-top: 1px solid #d5d2ca;
+	width: 555px;
+	right: -80px;
+	top: 45px;
+	padding: 9px;
+}
+
+.logo-accent img {
+	float: right;
+}
+
+/* SAVE INFO */
+
+.save-wrap {
+	width: 1024px;
+	height: 768px;
+	background: url(/img/lightbox-bg.png) repeat;
+	margin: 0 auto;
+	position: absolute;
+	z-index: 1;
+	display: none;
+}
+
+.save-info {
+	background: url(/img/save-drawing-accent-bg.png) repeat;
+	height: 395px;
+	width: 475px;
+	top: 100px;
+	position: relative;
+	z-index: 99999999999;
+	padding: 50px 80px;
+	margin: 0 auto;
+	cursor: pointer;
+	display: none;
+}
+
+.save-info img {
+	margin: 0 0 10px;
+}
+
+.save-info h2 {
+	float: left;
+	margin: 0 120px 0 5px;
+}
+
+.save-info p {
+	margin: 0 0 60px;
+}
+
+.save-info input {
+	margin: 10px 0;
+}
+

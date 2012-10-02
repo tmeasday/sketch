@@ -1,48 +1,77 @@
 <head>
-  <title>Sketch</title>
+  	<title>LACMA : SURREALIST DRAWING</title>
+  	<link rel="stylesheet" media="all" href="/styleSheets/style.css" type="text/css" />
+  	<link href='http://fonts.googleapis.com/css?family=Josefin+Sans:400,600,700,400italic,600italic,700italic' rel='stylesheet' type='text/css'>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+  	<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.7/jquery.min.js"></script>
+	<script src="http://ajax.googleapis.com/ajax/libs/jqueryui/1.8/jquery-ui.min.js"></script>
+	<script type="text/javascript">
+	$(document).ready(function(){
+	$(".app-info").fadeIn(700);
+	$(".close-info,.app-info").click(function() {
+	$(".info-wrap,.save-wrap").fadeOut(500);
+	$(".controls").fadeIn(500);			
+	}); 
+	$(".save-btn").click(function() {
+	$(".save-wrap,.save-info").fadeIn(500);
+	$(".controls").fadeOut(500);			
+	}); 	
+	});
+	</script>
 </head>
 
 <body>
   {{> canvas}}
   {{> controls}}
-  {{> introOverlay}}
-  {{> saveOverlay}}
+  {{> recordings}}
 </body>
 
 <template name="canvas">
-  <canvas></canvas>
+<div class="wrap">
+	<div class="info-wrap">
+		<div class="app-info">
+		<div class="close-info"></div>
+		<h1>Drawing Surrealism</h1>
+		<p>Welcome to the show. this would be some text to describe how this application works. 
+		   It will introduce the show and why this app is here. Enjoy drawing with others.</p>
+		   <img src="/img/info-graphic-bg.png" alt="info-graphic-bg" width="538" height="178" />
+		   <h2>touch to start drawing</h2>
+		   <h2 class="clear-margin"> collaborate with others</h2>
+		   <span class="logo-accent">
+		   <img src="/img/LACMA-logo.png" alt="LACMA-logo" width="86" height="39"/>
+		   </span>
+		</div>
+	</div>
+	<div class="save-wrap">
+		<div class="save-info">
+		<div class="close-info"></div>
+		<h1>Save your drawing</h1>
+		<p>This is just stand in text that would explain how to save and send your drawing.
+		   It would also explain how to share the drawing as well as how to tell your friends about the exhibition.</p>
+		<form>
+	    <input type="text" name="fullname" placeholder="full name"><br>
+		<input type="text" name="email" placeholder="email address"><br>
+		<input type="image" src="/img/save-drawing-btn.png" class="save-drawing-btn"></input>
+		</form>
+
+		   <span class="logo-accent">
+		   <img src="/img/LACMA-logo.png" alt="LACMA-logo" width="86" height="39"/>
+		   </span>
+		</div>
+	</div>
+	<canvas height="768" width="1024">
+	</canvas>
+</div>
 </template>
 
 <template name="controls">
-  <div class="controls">
-    <div class="color" style="background-color: {{color}}"></div>
-    <button class="btn reset">Clear</button>
-    <button class="btn send">Email</button>
-  </div>
+	<div class="ui-wrap">
+	  <div class="controls">
+		  <input type="image" src="/img/clear-btn.png" class="clear-btn reset"></input>
+		  <input type="image" src="/img/save-btn.png" class="save-btn"></input>
+	</div>
 </template>
 
-<template name="introOverlay">
-  {{#if intro}}
-    <div class="overlay">
-      <a class="close">X</a>
-      <h2>Drawing Surrealism</h2>
-      <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
-    </div>
-  {{/if}}
-</template>
+<template name="recordings">
 
-<template name="saveOverlay">
-  {{#if saving}}
-    <div class="overlay">
-      <a class="close">X</a>
-      <h2>Save your drawing</h2>
-      <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
-    
-      <form>
-        <input name="name" placeholder="full name"></input>
-        <input name="email" placeholder="email"></input>
-        <button class="save">Save your drawing</button>
-      </form>
-    </div>
-  {{/if}}
 </template>
