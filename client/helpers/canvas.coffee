@@ -28,11 +28,10 @@ class SketchCanvas
   
   end: (e) ->
     e.preventDefault()
-    @path.addPointFromEvent(e, @offset) if @path
     @stop()
   
   stop: ->
-      @path = null
+    @path = null
   
   clear: ->
     # Store the current transformation matrix
