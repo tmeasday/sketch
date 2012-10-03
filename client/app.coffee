@@ -11,7 +11,8 @@ Template.canvas.rendered = ->
     @handle = Paths.find().observe
       added: (path) => @canvas.drawPath(path)
       # draw over the top, no big deal
-      changed: (path) => @canvas.drawPath(path)
+      changed: (newPath, index, oldPath) => 
+        @canvas.updatePath(newPath, oldPath)
       # we only ever delete all the paths at once, so this is fine.
       removed: (path) => @canvas.clear()
     

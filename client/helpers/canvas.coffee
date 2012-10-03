@@ -62,4 +62,21 @@ class SketchCanvas
       @ctx.stroke()
     
     @ctx.closePath()
+  
+  # assumes that oldPath is already drawn
+  updatePath: (newPath, oldPath) ->
+    @ctx.strokeStyle = newPath.attributes.color
     
+    first = Math.max(oldPath.attributes.points.length - 1, 0)
+    points = newPath.attributes.points.slice(first)
+    
+    start = points.unshift()
+    @ctx.beginPath()
+    @ctx.moveTo(start.x, start.y)
+    
+    for point in points
+      @ctx.lineTo(point.x,point.y)
+      @ctx.stroke()
+    
+    @ctx.closePath()
+  
