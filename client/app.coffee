@@ -58,5 +58,5 @@ Template.saveOverlay.events
     Session.set('saving', false)
 
 Meteor.startup ->
-  Session.set('currentBrush', randomBrush())
+  Session.set('currentBrushNumber', randomBrushNumber())
   Session.set('pathsSince', new Date().getTime())

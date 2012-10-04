@@ -7,9 +7,10 @@ class SketchCanvas
     @image.onload = => @drawBackground()
     @image.src = '/img/canvas-bg.jpg'
     
-    # FIXME -- this should be attached to the path and random
-    @brush = new Image
-    @brush.src = "/img/brushes/round-stoke-01-color-01.png"
+    @brushes = for i in [0..N_BRUSHES]
+      brush = new Image
+      brush.src = "/img/brushes/round-stoke-0#{i+1}-color-01.png"
+      brush
     
     # set some preferences for our line drawing.
     @ctx.fillStyle = "solid"
@@ -31,7 +32,7 @@ class SketchCanvas
     $canvas = $(@canvas)
     @offset = $canvas.offset()
     
-    @path = new Path({color: Session.get('currentColor')})
+    @path = new Path({brushNumber: Session.get('currentBrushNumber')})
     @path.addPointFromEvent(e, @offset)
   
   drag: (e) ->
@@ -59,9 +60,9 @@ class SketchCanvas
     @ctx.restore()
   
   drawBasicPath: -> 
-    @drawPath({attributes: {color: 'red', points: [{x:10, y:10}, {x: 100; y:100}]}})
+    @drawPath({attributes: {brushNumber: 0, points: [{x:10, y:10}, {x: 100; y:100}]}})
   
-  drawLine: (start, end) ->
+  drawLine: (start, end, brush) ->
     # 2-d length
     length = (w,h) -> Math.sqrt(w*w + h*h)
     
@@ -69,7 +70,7 @@ class SketchCanvas
     y_diff = end.y - start.y
     
     # count the number of steps we need
-    steps = 2.0 * Math.ceil(length(x_diff, y_diff) / Math.min(@brush.width, @brush.height))
+    steps = 2.0 * Math.ceil(length(x_diff, y_diff) / Math.min(brush.width, brush.height))
     
     # abort if weirdness
     return unless steps
@@ -77,23 +78,23 @@ class SketchCanvas
     x_step = x_diff / steps
     y_step = y_diff / steps
         
-    x = start.x - @brush.width / 2
-    y = start.y - @brush.height / 2
+    x = start.x - brush.width / 2
+    y = start.y - brush.height / 2
     for i in [1..steps]
-      @ctx.drawImage(@brush, x, y)
+      @ctx.drawImage(brush, x, y)
       x += x_step
       y += y_step
       
-  drawPoints: (points) ->
+  drawPoints: (points, brush) ->
     lastPoint = points.shift()
     for point in points
-      @drawLine(lastPoint, point)
+      @drawLine(lastPoint, point, brush)
       lastPoint = point
   
   drawPath: (path) ->
-    @drawPoints path.attributes.points.slice(0)
+    @drawPoints path.attributes.points.slice(0), @brushes[path.attributes.brushNumber]
   
   # assumes that oldPath is already drawn
   updatePath: (newPath, oldPath) ->
     first = Math.max(oldPath.attributes.points.length - 1, 0)
-    @drawPoints newPath.attributes.points.slice(first)
+    @drawPoints newPath.attributes.points.slice(first), @brushes[newPath.attributes.brushNumber]
