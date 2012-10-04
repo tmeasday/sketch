@@ -7,6 +7,10 @@ class SketchCanvas
     @image.onload = => @drawBackground()
     @image.src = '/img/canvas-bg.jpg'
     
+    # FIXME -- this should be attached to the path and random
+    @brush = new Image
+    @brush.src = "/img/brushes/round-stoke-01-color-01.png"
+    
     # set some preferences for our line drawing.
     @ctx.fillStyle = "solid"
     @ctx.lineWidth = 5
@@ -56,35 +60,45 @@ class SketchCanvas
   drawBasicPath: -> 
     @drawPath({attributes: {color: 'red', points: [{x:10, y:10}, {x: 100; y:100}]}})
   
-  drawPath: (path) ->
-    @ctx.strokeStyle = path.attributes.color
+  drawLine: (start, end) ->
+    console.log('draw line')
+    console.log(start)
+    console.log(end)
+    # 2-d length
+    length = (w,h) -> Math.sqrt(w*w + h*h)
     
-    points = path.attributes.points.slice(0)
+    x_diff = start.x - end.x
+    y_diff = start.y - end.y
     
-    start = points.unshift()
-    @ctx.beginPath()
-    @ctx.moveTo(start.x, start.y)
+    # count the number of steps we need
+    steps = Math.ceil(length(x_diff, y_diff) / length(@brush.width, @brush.height))
+    console.log(steps)
     
+    # abort if weirdness
+    return unless steps
+    
+    x_step = x_diff / steps
+    y_step = y_diff / steps
+        
+    x = start.x - @brush.width / 2
+    y = start.y - @brush.height / 2
+    for i in [1..steps]
+      console.log i
+      console.log x,y
+      @ctx.drawImage(@brush, x, y)
+      x += x_step
+      y += y_step
+      
+  drawPoints: (points) ->
+    lastPoint = points.shift()
     for point in points
-      @ctx.lineTo(point.x,point.y)
-      @ctx.stroke()
-    
-    @ctx.closePath()
+      @drawLine(lastPoint, point)
+      lastPoint = point
+  
+  drawPath: (path) ->
+    @drawPoints path.attributes.points.slice(0)
   
   # assumes that oldPath is already drawn
   updatePath: (newPath, oldPath) ->
-    @ctx.strokeStyle = newPath.attributes.color
-    
     first = Math.max(oldPath.attributes.points.length - 1, 0)
-    points = newPath.attributes.points.slice(first)
-    
-    start = points.unshift()
-    @ctx.beginPath()
-    @ctx.moveTo(start.x, start.y)
-    
-    for point in points
-      @ctx.lineTo(point.x,point.y)
-      @ctx.stroke()
-    
-    @ctx.closePath()
-  
+    @drawPoints newPath.attributes.points.slice(first)
