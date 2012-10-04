@@ -15,6 +15,7 @@ class SketchCanvas
     @ctx.fillStyle = "solid"
     @ctx.lineWidth = 5
     @ctx.lineCap = "round"
+    
   
   drawBackground: ->
     @ctx.drawImage(@image, 0, 0)
@@ -61,18 +62,14 @@ class SketchCanvas
     @drawPath({attributes: {color: 'red', points: [{x:10, y:10}, {x: 100; y:100}]}})
   
   drawLine: (start, end) ->
-    console.log('draw line')
-    console.log(start)
-    console.log(end)
     # 2-d length
     length = (w,h) -> Math.sqrt(w*w + h*h)
     
-    x_diff = start.x - end.x
-    y_diff = start.y - end.y
+    x_diff = end.x - start.x
+    y_diff = end.y - start.y
     
     # count the number of steps we need
-    steps = Math.ceil(length(x_diff, y_diff) / length(@brush.width, @brush.height))
-    console.log(steps)
+    steps = 2.0 * Math.ceil(length(x_diff, y_diff) / Math.min(@brush.width, @brush.height))
     
     # abort if weirdness
     return unless steps
@@ -83,8 +80,6 @@ class SketchCanvas
     x = start.x - @brush.width / 2
     y = start.y - @brush.height / 2
     for i in [1..steps]
-      console.log i
-      console.log x,y
       @ctx.drawImage(@brush, x, y)
       x += x_step
       y += y_step
