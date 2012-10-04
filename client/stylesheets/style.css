@@ -32,6 +32,7 @@ p,h1,h2,h3,h4,h5,h6,h7,li,li li,li ul,li ul li,label,dd,dt,input,a {
 h1 {
 	font-size: 2em;
 	font-weight: 700;
+	margin: 0px 0 15px;
 }
 
 h2 {
@@ -43,13 +44,17 @@ h2 {
 
 
 p {
-	font-size: 1.3em;
+	font-size: 1.1em;
 	font-weight: 600;
 	line-height: 1.4em;
 }
 
 .clear-margin {
 	margin: 0 !important;
+}
+
+.free-align01 {
+		
 }
 
 .clear-pixie {
@@ -163,12 +168,12 @@ canvas {
 }
 
 .app-info img {
-	margin: 0 0 10px;
+	margin: 0 0 10px -25px;
 }
 
 .app-info h2 {
 	float: left;
-	margin: 0 120px 0 5px;
+	margin: 0 60px 0 5px;
 }
 
 .close-info {
