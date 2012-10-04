@@ -78,7 +78,6 @@ body {
 }
 
 canvas {
-	background: url(/img/canvas-bg.jpg) no-repeat;
 	position: relative;
 }
 

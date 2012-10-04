@@ -1,12 +1,20 @@
 class SketchCanvas
   constructor: (@canvas) ->
     @ctx = @canvas.getContext("2d")
-      
+    
+    # prepare the background for the canvas
+    @image = new Image
+    @image.onload = => @drawBackground()
+    @image.src = '/img/canvas-bg.jpg'
+    
     # set some preferences for our line drawing.
     @ctx.fillStyle = "solid"
     @ctx.lineWidth = 5
     @ctx.lineCap = "round"
-    
+  
+  drawBackground: ->
+    @ctx.drawImage(@image, 0, 0)
+  
   listen: ->
     $(@canvas)
       .on('mousedown touchstart', (e) => @start(e))
@@ -40,7 +48,8 @@ class SketchCanvas
     # Use the identity matrix while clearing the canvas
     @ctx.setTransform(1, 0, 0, 1, 0, 0)
     @ctx.clearRect(0, 0, @canvas.width, @canvas.height)
-
+    @drawBackground()
+    
     # Restore the transform
     @ctx.restore()
   
