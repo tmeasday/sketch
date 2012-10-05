@@ -9,7 +9,7 @@ class SketchCanvas
     
     @brushes = for i in [0..N_BRUSHES]
       brush = new Image
-      brush.src = "/img/brushes/round-stoke-0#{i+1}-color-01.png"
+      brush.src = "/img/brushes/round-0#{i+1}.png"
       brush
     
     # set some preferences for our line drawing.
