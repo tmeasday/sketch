@@ -9,7 +9,9 @@ class SketchCanvas
     
     @brushes = for i in [0..N_BRUSHES]
       brush = new Image
-      brush.src = "/img/brushes/round-0#{i+1}.png"
+      num = i + 1
+      num = '0' + num if num < 10
+      brush.src = "/img/brushes/round-#{num}.png"
       brush
     
     # set some preferences for our line drawing.

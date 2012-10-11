@@ -31,6 +31,12 @@ Template.controls.events
     Session.set('pathsSince', new Date().getTime())
   'click .save-btn': ->
     Session.set('saving', true)
+  'click .new-brush-btn': ->
+    oldBrush = Session.get('currentBrushNumber')
+    newBrush = randomBrushNumber()
+    # just make sure we don't pull the same brush again
+    newBrush = randomBrushNumber() while (newBrush == oldBrush)
+    Session.set('currentBrushNumber', newBrush)
 
 Template.saveOverlay.preserve(['.save-wrap'])
 Template.saveOverlay.helpers
