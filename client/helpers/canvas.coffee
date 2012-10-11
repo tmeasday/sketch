@@ -5,7 +5,6 @@ class SketchCanvas
     # prepare the background for the canvas
     @image = new Image
     @image.onload = => @drawBackground()
-    @image.src = '/img/canvas-bg.jpg'
     @image.src = '/img/new-canvas-bg.jpg'
     
     @brushes = for i in [0..N_BRUSHES]
