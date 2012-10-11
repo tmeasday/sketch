@@ -1,4 +1,4 @@
-N_BRUSHES = 7
+N_BRUSHES = 13
 
 
 randomColor = ->
