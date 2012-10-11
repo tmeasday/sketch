@@ -62,7 +62,8 @@ p {
 }
 
 input, textarea {
-	width: 300px;
+	width: 410px;
+	height: 17px;
 }
 /* END RESET */
 
@@ -187,8 +188,8 @@ canvas {
 .logo-accent {
 	float: right;
 	position: relative;
-	border-top: 1px solid #d5d2ca;
-	width: 555px;
+	border-top: 1px solid #D5D2CA;
+	width: 910px;
 	right: -80px;
 	top: 45px;
 	padding: 9px;
@@ -200,10 +201,10 @@ canvas {
 
 /* SAVE INFO */
 .save-info {
-	background: url(/img/save-drawing-accent-bg.png) repeat;
-	height: 395px;
-	width: 475px;
-	top: 100px;
+	background: url(/img/new-save-drawing-bg.jpg) repeat;
+	height: 600px;
+	width: 840px;
+	top: 135px;
 	position: relative;
 	z-index: 99999999999;
 	padding: 50px 80px;
@@ -215,21 +216,53 @@ canvas {
 	margin: 0 0 10px;
 }
 
+.save-info h1 {
+	margin: 70px 0 20px;
+	text-transform: uppercase;
+	border-bottom: 1px solid #D5D2CA;
+	padding: 0 0 13px;
+	width: 465px;
+}
+
 .save-info h2 {
 	float: left;
 	margin: 0 120px 0 5px;
 }
 
 .save-info p {
-	margin: 0 0 60px;
+	margin: 0 0 45px;
+	width: 480px;
+	line-height: 1.9em;
+	font-size: 1.3em;
 }
 
 .save-info input {
-	margin: 10px 0;
+	margin: 14px 0;
+	padding: 8px;
+	font-size: 16px;
 }
 
-/* fixme */
+.save-drawing-btn[type="image"] {
+	height: 40px;
+	width: 430px;
+	padding: 0;
+}
+
+.postage-accent {
+	position: absolute;
+	right: 127px;
+	background: url(/img/postage-accent.png) no-repeat;
+	height: 166px;
+	width: 300px;
+	z-index: 1;
+	top: 40px;
+}
+
 .save-info .preview {
-  border: 1px solid #999;
-  max-width: 100px;
+	max-width: 135px;
+	background: url(/img/stamp-border-bg.png) no-repeat;
+	padding: 16px;
+	float: right;
+	position: relative;
+	right: -20px;  
 }
