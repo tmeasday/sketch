@@ -9,7 +9,6 @@
 
 <body>
   <div class="wrap">
-    {{> introOverlay}}
     {{> saveOverlay}}
     {{> canvas}}
     {{> controls}}
@@ -25,23 +24,6 @@
 	  <div class="controls {{hidden}}">
 		  <input type="image" src="/img/clear-btn.png" class="clear-btn reset"></input>
 		  <input type="image" src="/img/save-btn.png" class="save-btn"></input>
-	</div>
-</template>
-
-<template name="introOverlay">
-	<div class="info-wrap overlay {{introOpen}}">
-		<div class="app-info">
-		<div class="close-info"></div>
-		<h1>Drawing Surrealism</h1>
-		<p>Welcome to the show. this would be some text to describe how this application works. 
-		   It will introduce the show and why this app is here. Enjoy drawing with others.</p>
-		   <img src="/img/info-graphic-bg.png" alt="info-graphic-bg" width="538" height="178" />
-		   <h2>touch to start drawing</h2>
-		   <h2 class="clear-margin"> collaborate with others</h2>
-		   <span class="logo-accent">
-		   <img src="/img/LACMA-logo.png" alt="LACMA-logo" width="86" height="39"/>
-		   </span>
-		</div>
 	</div>
 </template>
 
