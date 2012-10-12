@@ -18,7 +18,7 @@ Meteor.methods
     console.log "mailing to #{address}"
     # FIXME -- get emailing details
     Email.send
-      from: 'tom@bindle.me'
+      from: 'lacma-drawing@lacma.org'
       to: "#{to} <#{address}>"
       subject: 'Your Sketch'
       html: "<img src='#{dataURI}'></img>"
