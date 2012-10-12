@@ -23,6 +23,7 @@ class SketchCanvas
   drawBackground: ->
     @ctx.drawImage(@image, 0, 0)
   
+  # XXX: should the event listening stuff be refactored out of here?
   listen: ->
     $(@canvas)
       .on('mousedown touchstart', (e) => @start(e))
@@ -40,7 +41,9 @@ class SketchCanvas
   drag: (e) ->
     e.preventDefault()
     # if we are dragging
-    @path.addPointFromEvent(e, @offset) if @path
+    if @path
+      @path.addPointFromEvent(e, @offset) 
+      iteracted()
   
   end: (e) ->
     e.preventDefault()
