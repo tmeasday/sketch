@@ -30,7 +30,7 @@ p,h1,h2,h3,h4,h5,h6,h7,li,li li,li ul,li ul li,label,dd,dt,input,a {
 }
 
 h1 {
-	font-size: 2em;
+	font-size: 1.7em;
 	font-weight: 700;
 	margin: 0px 0 15px;
 }
@@ -62,7 +62,7 @@ p {
 }
 
 input, textarea {
-	width: 410px;
+	width: 360px;
 	height: 17px;
 }
 /* END RESET */
@@ -77,8 +77,8 @@ body {
 
 .wrap {
   position: relative;
-	width: 2048px;
-	height: 1536px;
+	width: 1024px;
+	height: 768px;
   overflow: hidden;
 	margin: 0 auto;
 }
@@ -92,10 +92,10 @@ canvas {
 
 .ui-wrap {
 	position: absolute;
-	bottom: 40px;
-	height: 150px;
-	left: 775px;
-	width: 610px;
+	bottom: 30px;
+	height: 80px;
+	left: 325px;
+	width: 420px;
 	overflow: hidden;
 }
 
@@ -110,33 +110,34 @@ canvas {
 .clear-btn[type="image"] {
 	position: relative;
 	left: 40px;
-	width: 93px !important;
-	height: 138px !important;
+	width: 54px !important;
+	height: 74px !important;
 }
 
 .new-brush-btn {
 	position: relative;
-	left: 125px;
-	width: 148px !important;
-	height: 140px !important;	
+	left: 100px;
+	width: 79px !important;
+	height: 75px !important;
+	top: 1px;	
 }
 
 .save-btn[type="image"] {
-	width: 104px !important;
-	height: 118px !important;
+	width: 58px !important;
+	height: 68px !important;
 	position: relative;
-	top: -4px;
-	left: 205px;
+	top: -1px;
+	left: 167px;
 }
 
 /* OVERLAYS */
 .overlay {
-	width: 2048px;
+	width: 1024px;
 	background: url(/img/lightbox-bg.png) repeat;
 	margin: 0 auto;
 	position: absolute;
   opacity: 0;
-	height: 1536px;
+	height: 768px;
   /* so the z-index stays at 1 until the transition is over */
   transition: opacity 500ms linear, z-index 0 linear 500ms;
   -webkit-transition: opacity 500ms linear, z-index 0 linear 500ms;
@@ -189,7 +190,7 @@ canvas {
 	float: right;
 	position: relative;
 	border-top: 1px solid #D5D2CA;
-	width: 910px;
+	width: 805px;
 	right: -80px;
 	top: 45px;
 	padding: 9px;
@@ -202,9 +203,9 @@ canvas {
 /* SAVE INFO */
 .save-info {
 	background: url(/img/new-save-drawing-bg.jpg) repeat;
-	height: 600px;
-	width: 840px;
-	top: 135px;
+	height: 495px;
+	width: 740px;
+	top: 50px;
 	position: relative;
 	z-index: 99999999999;
 	padding: 50px 80px;
@@ -217,11 +218,11 @@ canvas {
 }
 
 .save-info h1 {
-	margin: 70px 0 20px;
+	margin: 43px 0 20px;
 	text-transform: uppercase;
 	border-bottom: 1px solid #D5D2CA;
 	padding: 0 0 13px;
-	width: 465px;
+	width: 380px;
 }
 
 .save-info h2 {
@@ -230,32 +231,32 @@ canvas {
 }
 
 .save-info p {
-	margin: 0 0 45px;
-	width: 480px;
-	line-height: 1.9em;
-	font-size: 1.3em;
+	margin: 0 0 30px;
+	width: 387px;
+	line-height: 1.7em;
+	font-size: 1.2em;
 }
 
 .save-info input {
-	margin: 14px 0;
+	margin: 11px 0;
 	padding: 8px;
 	font-size: 16px;
 }
 
 .save-drawing-btn[type="image"] {
 	height: 40px;
-	width: 430px;
+	width: 380px;
 	padding: 0;
 }
 
 .postage-accent {
 	position: absolute;
-	right: 127px;
+	right: 95px;
 	background: url(/img/postage-accent.png) no-repeat;
 	height: 166px;
 	width: 300px;
 	z-index: 1;
-	top: 40px;
+	top: 30px;
 }
 
 .save-info .preview {
@@ -264,5 +265,6 @@ canvas {
 	padding: 16px;
 	float: right;
 	position: relative;
-	right: -20px;  
+	right: -35px;
+	top: -15px;
 }
