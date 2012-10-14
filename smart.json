@@ -6,6 +6,7 @@
   "packages": {
     "models": {},
     "recorder": {},
-    "fork-me": {}
+    "fork-me": {},
+    "crypto-md5": {}
   }
 }

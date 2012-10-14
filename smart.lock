@@ -2,13 +2,14 @@
   "meteor": {
     "git": "https://github.com/tmeasday/meteor.git",
     "branch": "auth-model-support",
-    "commit": "b921de029d985541d4099baeb514bc1cced8a908"
+    "commit": "31df25fe5636d6eb2839272efff90526226fddbf"
   },
   "dependencies": {
     "basePackages": {
       "models": {},
       "recorder": {},
-      "fork-me": {}
+      "fork-me": {},
+      "crypto-md5": {}
     },
     "packages": {
       "models": {
@@ -26,10 +27,20 @@
         "tag": "v0.0.2",
         "commit": "7a0e4043d482d157a5b5dc9eee69160d759d506e"
       },
+      "crypto-md5": {
+        "git": "https://github.com/tmeasday/meteor-crypto-md5.git",
+        "tag": "v0.0.1",
+        "commit": "a0638a6cabfc84e19f2d5828f76aa8f6a0cc8c1a"
+      },
       "deps-extensions": {
         "git": "https://github.com/tmeasday/meteor-deps-extensions.git",
         "tag": "v0.1.0",
         "commit": "110462c0ba33aaeb35e55069134287325cc453e5"
+      },
+      "crypto-base": {
+        "git": "https://github.com/tmeasday/meteor-crypto-base.git",
+        "tag": "v0.0.1",
+        "commit": "668fc710ad041eee6ae2f9b53289128f211aa9e0"
       }
     }
   }

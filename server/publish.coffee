@@ -15,10 +15,14 @@ Paths.allow
 
 Meteor.methods
   emailPicture: (to, address, dataURI) ->
-    console.log "mailing to #{address}"
-    # FIXME -- get emailing details
+    console.log "uploading to flickr"
+    photoid = Meteor.postFlickr({}, dataURI)
+    
+    imageURL = "http://www.flickr.com/photos/#{process.env.FLICKR_USER}/#{photoid}"
+    console.log "mailing #{imageURL} to #{address}"
+    
     Email.send
       from: 'lacma-drawing@lacma.org'
       to: "#{to} <#{address}>"
       subject: 'Your Sketch'
-      html: "<img src='#{dataURI}'></img>"
+      html: "<img src='#{imageURL}'></img>"
