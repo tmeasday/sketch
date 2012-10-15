@@ -1,9 +1,6 @@
 UPLOAD_URL = 'http://api.flickr.com/services/upload'
 
 _prepareArgs = (args) ->
-  # add the token that allows us to post to this account
-  args.auth_token = process.env.FLICKR_TOKEN
-
   args.api_key = process.env.FLICKR_KEY
   input = process.env.FLICKR_SECRET
   for key in _.keys(args).sort() when key != 'photo'
@@ -11,6 +8,7 @@ _prepareArgs = (args) ->
   
   args.api_sig = CryptoJS.MD5(input).toString()
 
+# use this guy to 
 Meteor.callFlickr = (args, url = 'http://api.flickr.com/services/rest/') ->
   _prepareArgs(args)
   
@@ -23,16 +21,18 @@ Meteor.callFlickr = (args, url = 'http://api.flickr.com/services/rest/') ->
     console.log(result)
     
 Meteor.postFlickr = (args, photo) ->
-  request = __meteor_bootstrap__.require('request')
+  # add the token that allows us to post to this account
+  args.auth_token = process.env.FLICKR_TOKEN
   _prepareArgs(args)
   
+  data = photo.replace(/^data:image\/\w+;base64,/, '')
+  photoBuffer = Buffer(data, 'base64')
+  
+  request = __meteor_bootstrap__.require('request')
   fut = new Future;
   callback = (error, result) ->
     console.log(error) if error
     fut.ret(result)
-  
-  data = photo.replace(/^data:image\/\w+;base64,/, '')
-  photoBuffer = Buffer(data, 'base64')
   
   r = request.post(UPLOAD_URL, callback)
   
