@@ -18,6 +18,11 @@ Meteor.methods
     console.log "uploading to flickr"
     photoid = Meteor.postFlickr({}, dataURI)
     
+    console.log "retrieving flickr URL"
+    result = Meteor.callFlickr method: 'flickr.photos.getSizes', photo_id: photoid
+    source = result.content.match(/\<size.*label\="Large".*source="([^"]+)"\.*/)[1]
+    console.log source
+    
     imageURL = "http://www.flickr.com/photos/#{process.env.FLICKR_USER}/#{photoid}"
     console.log "mailing #{imageURL} to #{address}"
     
@@ -25,4 +30,4 @@ Meteor.methods
       from: 'lacma-drawing@lacma.org'
       to: "#{to} <#{address}>"
       subject: 'Your Sketch'
-      html: "<img src='#{imageURL}'></img>"
+      html: "<img src='#{source}'></img>"
