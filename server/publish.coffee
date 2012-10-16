@@ -16,7 +16,7 @@ Paths.allow
 Meteor.methods
   emailPicture: (to, address, dataURI) ->
     console.log "uploading to flickr"
-    photoid = Meteor.postFlickr({}, dataURI)
+    photoid = Meteor.postFlickr({is_public: 0, is_friend: 0, is_family: 0, tags: 'Drawing Surrealism'}, dataURI)
     
     console.log "retrieving flickr URL"
     result = Meteor.callFlickr method: 'flickr.photos.getSizes', photo_id: photoid
