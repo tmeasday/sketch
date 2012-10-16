@@ -35,11 +35,12 @@ EMAIL_STR = '''<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "h
         <td width="31"valign="top" ><a href="http://facebook.com/share.php?u=$IMAGE_URL"><img src="$SITE_URL/img/facebook.gif" width="31" height="31" alt="" style="display:block;color:#fc3a3a;text-align:center;line-height:71px;" /> </a></td>
         <td width="10"><img src="$SITE_URL/img/spacer.gif" width="1" height="1" alt="" style="display:block;" /> </td>
         
-        <td width="750"valign="top"><a href="http://twitter.com/share?text=Check+my+drawing+from+LACMA&url=$IMAGE_URL"><img src="$SITE_URL/img/twitter.gif" width="31" height="31" alt="" style="display:block;color:#558ee7;text-align:center;line-height:71px;" /></a> </td>
+        <td width="700"valign="top"><a href="http://twitter.com/share?text=Check+my+drawing+from+LACMA&url=$IMAGE_URL"><img src="$SITE_URL/img/twitter.gif" width="31" height="31" alt="" style="display:block;color:#558ee7;text-align:center;line-height:71px;" /></a> </td>
         <td width="37"><img src="$SITE_URL/img/spacer.gif" width="1" height="1" alt="" style="display:block;" /> </td>
 
         <td width="72"valign="top"><a href="http://www.lacma.org"><img src="$SITE_URL/img/lacma.gif" width="72" height="28" alt="" style="display:block;color:#558ee7;text-align:center;line-height:71px;" /></a> </td>
 
+  <tr><td height="25"><img src="$SITE_URL/img/spacer.gif" width="1" height="1" alt="" style="display:block;" /> </td></tr>
       </table>
     </td>
   </tr>
