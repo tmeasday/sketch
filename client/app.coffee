@@ -14,7 +14,7 @@ iteracted = ->
   Meteor.clearTimeout(handle) if handle
   
   handle = Meteor.setTimeout(
-    (-> Session.set('pathsSince', new Date().getTime())), 
+    (-> document.location.reload()), 
     REDRAW_TIMEOUT * 1000
   )
   Session.set('redrawHandle', handle)
