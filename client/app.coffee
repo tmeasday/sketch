@@ -9,6 +9,10 @@ canvasDataURL = ->
   canvas = $('canvas').get(0)
   canvas.toDataURL('image/png') if canvas
 
+clearScreen = ->
+  Meteor.call 'getTime', (err, time) ->
+    Session.set('pathsSince', time)
+
 restart = ->
   subscription.stop()
   Meteor.setTimeout((-> document.location.reload()), 1000)
@@ -80,4 +84,4 @@ Template.saveOverlay.events
 Meteor.startup ->
   iteracted()
   Session.set('currentBrushNumber', randomBrushNumber())
-  Session.set('pathsSince', new Date().getTime())
+  clearScreen()

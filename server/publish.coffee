@@ -14,6 +14,9 @@ Paths.allow
 
 
 Meteor.methods
+  getTime: ->
+    return new Date().getTime()
+  
   emailPicture: (to, address, dataURI) ->
     console.log "uploading to flickr"
     photoid = Meteor.postFlickr({tags: 'Drawing Surrealism'}, dataURI)
