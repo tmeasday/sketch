@@ -17,4 +17,4 @@ class Path extends Model
       x: event.offsetX || event.pageX - offset.left
       y: event.offsetY || event.pageY - offset.top
 
-Paths = Path._collection = new Meteor.Collection('paths', null, null, null, Path)
+Paths = Path._collection = new Meteor.Collection('paths', {ctor: Path})
