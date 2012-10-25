@@ -1,22 +1,24 @@
 # redrawing timeout in seconds
 REDRAW_TIMEOUT = 5 * 60
 
+handle = null
 Meteor.autosubscribe ->
-  Meteor.subscribe 'paths', Session.get('pathsSince')
+  handle = Meteor.subscribe 'paths', Session.get('pathsSince')
 
 canvasDataURL = ->
   canvas = $('canvas').get(0)
   canvas.toDataURL('image/png') if canvas
+
+restart = ->
+  handle.stop()
+  Meteor.setTimeout((-> document.location.reload()), 1000)
 
 # someone just interacted with the app, reset the redraw timer
 iteracted = ->
   handle = Session.get('redrawHandle')
   Meteor.clearTimeout(handle) if handle
   
-  handle = Meteor.setTimeout(
-    (-> document.location.reload()), 
-    REDRAW_TIMEOUT * 1000
-  )
+  handle = Meteor.setTimeout restart, REDRAW_TIMEOUT * 1000
   Session.set('redrawHandle', handle)
 
 Template.canvas.rendered = ->
