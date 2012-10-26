@@ -1,6 +1,8 @@
 {
   "meteor": {
-    "path": "../../meteor/meteor"
+    "git": "https://github.com/tmeasday/meteor.git",
+    "branch": "model-support",
+    "commit": "26b8c2aed3354550c7723624c69bb281aa8f5948"
   },
   "dependencies": {
     "basePackages": {

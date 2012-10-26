@@ -1,6 +1,7 @@
 {
   "meteor": {
-    "path": "../../meteor/meteor"
+    "git": "https://github.com/tmeasday/meteor.git",
+    "branch": "model-support"
   },
   "packages": {
     "models": {},
