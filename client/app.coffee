@@ -84,4 +84,4 @@ Template.saveOverlay.events
 Meteor.startup ->
   iteracted()
   Session.set('currentBrushNumber', randomBrushNumber())
-  clearScreen()
+  clearScreen() unless Session.get('pathsSince')
