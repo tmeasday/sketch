@@ -1,19 +1,32 @@
+listeners = []
+paths = []
 Meteor.publish 'paths', (since) ->
-  Paths.find({createdAt: {$gt: since}});
-
-Paths.allow
-  insert: (u, d) -> 
-    d.createdAt = new Date().getTime();
-    true
-  update: (u, ds, f, m) -> 
-    # a little hack, don't allow us to set createdAt
-    if m.$set and m.$set.createdAt 
-      delete m.$set.createdAt 
-    true
-  remove: (u, ds) -> true
+  listeners[@sub_id] = @
+  @complete()
+  @flush()
+  
+  @onStop =>
+    delete listeners[@sub_id]
 
 
 Meteor.methods
+  # simulate collections that don't exist client side
+  '/paths/insert': (path) ->
+    paths[path._id] = path
+    for id, listener of listeners
+      listener.set('paths', path._id, path)
+      listener.flush()
+  
+  '/paths/update': (id, update) ->
+    path = paths[id]
+    
+    # just going to assume the update is a push to points
+    path.points = path.points.concat(update.$push.points)
+    
+    for id, listener of listeners
+      listener.set('paths', path._id, {points: path.points})
+      listener.flush()
+    
   getTime: ->
     return new Date().getTime()
   
