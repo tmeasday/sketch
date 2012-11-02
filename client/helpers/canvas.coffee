@@ -7,7 +7,7 @@ class SketchCanvas
     @image.onload = => @drawBackground()
     @image.src = '/img/canvas-bg.jpg'
     
-    @brushes = for i in [0..N_BRUSHES]
+    @brushes = for i in [0...N_BRUSHES]
       brush = new Image
       num = i + 1
       num = '0' + num if num < 10
