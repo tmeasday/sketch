@@ -48,8 +48,7 @@ Template.controls.hidden = ->
 
 Template.controls.events
   'click .clear-btn': ->
-    iteracted()
-    Session.set('pathsSince', new Date().getTime())
+    restart()
   'click .save-btn': ->
     iteracted()
     Session.set('saving', true)
