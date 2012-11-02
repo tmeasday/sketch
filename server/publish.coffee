@@ -1,5 +1,50 @@
 Meteor.publish 'paths', (since) ->
-  Paths.find({createdAt: {$gt: since}});
+  pointHandles = {}
+  publishPath = (pathId) => 
+    pointHandles[pathId] = Points.find({pathId: pathId}).observe
+      added: (obj) =>
+        obj = obj._meteorRawData()
+        @set('points', obj._id, obj)
+        @flush()
+      
+      # these two should never happen
+      changed: (obj) =>
+        obj = obj._meteorRawData()
+        @set('points', obj._id, obj)
+        @flush()
+      
+      removed: (old_obj) =>
+        old_obj = old_obj._meteorRawData()
+        @unset('points', old_obj._id, _.keys(old_obj))
+        @flush()
+      
+  
+  pathHandle = Paths.find({createdAt: {$gt: since}}).observe
+    added: (obj) =>
+      obj = obj._meteorRawData()
+      @set('paths', obj._id, obj)
+      @flush()
+      publishPath(obj._id)
+    
+    # in general this should be smarter, but shouldn't happen much
+    changed: (obj) =>
+      obj = obj._meteorRawData()
+      @set('paths', obj._id, obj)
+      @flush()
+    
+    # this should never happen, but just in case
+    removed: (old_obj) =>
+      old_obj = old_obj._meteorRawData()
+      pointHandles[old_obj._id].stop()
+      @unset('paths', old_obj._id, _.keys(old_obj))
+      @flush()
+  
+  @complete()
+  @flush()
+  
+  @onStop =>
+    handle.stop() for handle in pointHandles
+    pathHandle.stop()
 
 Paths.allow
   insert: (u, d) -> 
@@ -11,6 +56,9 @@ Paths.allow
       delete m.$set.createdAt 
     true
   remove: (u, ds) -> true
+
+Points.allow
+  insert: (u, d) -> true
 
 
 Meteor.methods

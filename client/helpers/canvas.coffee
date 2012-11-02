@@ -93,13 +93,18 @@ class SketchCanvas
   drawPoints: (points, brush) ->
     lastPoint = points.shift()
     for point in points
-      @drawLine(lastPoint, point, brush)
+      @drawLine(lastPoint.attributes, point.attributes, brush)
       lastPoint = point
   
   drawPath: (path) ->
-    @drawPoints path.attributes.points.slice(0), @brushes[path.attributes.brushNumber]
+    @drawPoints path.points().slice(0), @brushes[path.attributes.brushNumber]
   
   # assumes that oldPath is already drawn
   updatePath: (newPath, oldPath) ->
-    first = Math.max(oldPath.attributes.points.length - 1, 0)
-    @drawPoints newPath.attributes.points.slice(first), @brushes[newPath.attributes.brushNumber]
+    first = Math.max(oldPath.points().length - 1, 0)
+    @drawPoints newPath.points().slice(first), @brushes[newPath.attributes.brushNumber]
+  
+  incrementPath: (path) ->
+    length = path.points().length
+    if length >= 2
+      @drawPoints(path.points().slice(length - 2), @brushes[path.attributes.brushNumber])

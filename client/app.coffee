@@ -28,7 +28,7 @@ iteracted = ->
 Template.canvas.rendered = ->
   unless @canvas
     @canvas = new SketchCanvas(@find('canvas'))
-    @handle = Paths.find().observe
+    @pathHandle = Paths.find().observe
       added: (path) => @canvas.drawPath(path)
       # draw over the top, no big deal
       changed: (newPath, index, oldPath) => 
@@ -36,11 +36,18 @@ Template.canvas.rendered = ->
       # we only ever delete all the paths at once, so this is fine.
       removed: (path) => @canvas.clear()
     
+    @pointHandle = Points.find().observe
+      added: (point) =>
+        @canvas.incrementPath(point.path())
+    
+    
     Meteor.defer =>
       @canvas.listen()
 
 Template.canvas.destroyed = ->
-  this.handle.stop()
+  @pathHandle.stop()
+  @pointHandle.stop()
+  
 
 Template.controls.preserve ['.controls']
 Template.controls.hidden = -> 
