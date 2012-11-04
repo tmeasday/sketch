@@ -7,7 +7,6 @@
   "dependencies": {
     "basePackages": {
       "models": {},
-      "recorder": {},
       "fork-me": {},
       "crypto-md5": {}
     },
@@ -16,11 +15,6 @@
         "git": "https://github.com/tmeasday/meteor-models.git",
         "tag": "v0.1.1",
         "commit": "310606a6bbc12c8c5394323e035fe7db441e2ca6"
-      },
-      "recorder": {
-        "git": "https://github.com/tmeasday/meteor-recorder.git",
-        "tag": "v0.2.1",
-        "commit": "6d2a075cfa1000525d7f362267ab5e205b678713"
       },
       "fork-me": {
         "git": "https://github.com/possibilities/meteor-fork-me.git",
@@ -31,11 +25,6 @@
         "git": "https://github.com/tmeasday/meteor-crypto-md5.git",
         "tag": "v0.0.1",
         "commit": "a0638a6cabfc84e19f2d5828f76aa8f6a0cc8c1a"
-      },
-      "deps-extensions": {
-        "git": "https://github.com/tmeasday/meteor-deps-extensions.git",
-        "tag": "v0.1.0",
-        "commit": "110462c0ba33aaeb35e55069134287325cc453e5"
       },
       "crypto-base": {
         "git": "https://github.com/tmeasday/meteor-crypto-base.git",
