@@ -38,7 +38,7 @@ Template.canvas.rendered = ->
     
     @pointHandle = Points.find().observe
       added: (point) =>
-        @canvas.incrementPath(point.path())
+        @canvas.addPoint(point)
     
     
     Meteor.defer =>
