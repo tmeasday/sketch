@@ -1,3 +1,4 @@
+MAX_PATH_LENGTH = 100
 class SketchCanvas
   constructor: (@canvas) ->
     @ctx = @canvas.getContext("2d")
@@ -42,6 +43,12 @@ class SketchCanvas
     e.preventDefault()
     # if we are dragging
     if @path
+      # reset the path if it gets too long
+      length = @path.attributes.points.length
+      if length > MAX_PATH_LENGTH
+        last_point = @path.attributes.points[length - 1]
+        @path = new Path({brushNumber: Session.get('currentBrushNumber'), points: [last_point]})
+      
       @path.addPointFromEvent(e, @offset) 
       iteracted()
   

@@ -6,6 +6,7 @@ class Path extends Model
     
   addPoint: (point) ->
     if @attributes.points
+      @attributes.points.push(point)
       @save({$push: {points: point}})
     else
       @update_attribute('points', [point])
