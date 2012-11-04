@@ -92,6 +92,7 @@ class SketchCanvas
       y += y_step
       
   drawPoints: (points, brush) ->
+    console.log "drawing #{points.length} points"
     lastPoint = points.shift()
     for point in points
       @drawLine(lastPoint.attributes, point.attributes, brush)
