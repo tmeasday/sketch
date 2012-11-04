@@ -33,8 +33,6 @@ Template.canvas.rendered = ->
       # draw over the top, no big deal
       changed: (newPath, index, oldPath) => 
         @canvas.updatePath(newPath, oldPath)
-      # we only ever delete all the paths at once, so this is fine.
-      removed: (path) => @canvas.clear()
     
     Meteor.defer =>
       @canvas.listen()
