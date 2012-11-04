@@ -19,6 +19,7 @@ class SketchCanvas
     @ctx.lineWidth = 5
     @ctx.lineCap = "round"
     
+    @lastDrawn = {}
   
   drawBackground: ->
     @ctx.drawImage(@image, 0, 0)
@@ -104,6 +105,18 @@ class SketchCanvas
     first = Math.max(oldPath.points().length - 1, 0)
     @drawPoints newPath.points().slice(first), @brushes[newPath.attributes.brushNumber]
   
+  addPoint: (point) ->
+    path = point.path()
+    points = path.points()
+    len = points.length
+    
+    # only draw the point if it's the last on the path
+    if point.id == points[len - 1].id
+      @drawPoints points.slice(@lastDrawn[path.id] || 0), 
+        @brushes[path.attributes.brushNumber]
+      
+      @lastDrawn[path.id] = len - 1
+    
   incrementPath: (path) ->
     length = path.points().length
     if length >= 2
