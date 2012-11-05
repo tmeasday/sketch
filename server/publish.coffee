@@ -1,5 +1,6 @@
 listeners = []
 paths = []
+changes = {}
 Meteor.publish 'paths', (since) ->
   listeners[@sub_id] = @
   @complete()
@@ -9,24 +10,30 @@ Meteor.publish 'paths', (since) ->
     delete listeners[@sub_id]
 
 
+informListeners = ->
+  unless _.isEmpty(changes)
+    for _id, listener of listeners
+      for id, updates of changes
+        listener.set('paths', id, updates)
+      listener.flush()
+  changes = {}
+
+Meteor.startup ->
+  Meteor.setInterval informListeners, 50
+
 Meteor.methods
   # simulate collections that don't exist client side
   '/paths/insert': (path) ->
-    paths[path._id] = path
-    for id, listener of listeners
-      listener.set('paths', path._id, path)
-      listener.flush()
+    paths[path._id] = changes[path._id] = path
   
   '/paths/update': (id, update) ->
     path = paths[id]
+    changes[path._id] ||= {}
     
     # just going to assume the update is a push to points
-    path.points = path.points.concat(update.$push.points)
-    
-    for id, listener of listeners
-      listener.set('paths', path._id, {points: path.points})
-      listener.flush()
-    
+    path.points = changes[path._id].points = 
+      path.points.concat(update.$push.points)
+  
   getTime: ->
     return new Date().getTime()
   
