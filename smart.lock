@@ -2,7 +2,7 @@
   "meteor": {
     "git": "https://github.com/tmeasday/meteor.git",
     "branch": "model-support",
-    "commit": "26b8c2aed3354550c7723624c69bb281aa8f5948"
+    "commit": "cbab3390c4fd1c82d80978e9840eb3cf3aed45bd"
   },
   "dependencies": {
     "basePackages": {
