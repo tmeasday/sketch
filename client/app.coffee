@@ -22,7 +22,7 @@ iteracted = ->
   handle = Session.get('redrawHandle')
   Meteor.clearTimeout(handle) if handle
   
-  handle = Meteor.setTimeout restart, REDRAW_TIMEOUT * 1000
+  handle = Meteor.setTimeout clearScreen, REDRAW_TIMEOUT * 1000
   Session.set('redrawHandle', handle)
 
 Template.canvas.rendered = ->
@@ -33,6 +33,9 @@ Template.canvas.rendered = ->
       # draw over the top, no big deal
       changed: (newPath, index, oldPath) => 
         @canvas.updatePath(newPath, oldPath)
+      # only ever remove everything
+      removed: =>
+        @canvas.clear()
     
     Meteor.defer =>
       @canvas.listen()
@@ -46,7 +49,7 @@ Template.controls.hidden = ->
 
 Template.controls.events
   'click .clear-btn': ->
-    restart()
+    clearScreen()
   'click .save-btn': ->
     iteracted()
     Session.set('saving', true)
