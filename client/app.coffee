@@ -10,6 +10,7 @@ canvasDataURL = ->
   canvas.toDataURL('image/png') if canvas
 
 clearScreen = ->
+  $('canvas').trigger('clear')
   Meteor.call 'getTime', (err, time) ->
     Session.set('pathsSince', time)
 

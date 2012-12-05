@@ -20,6 +20,7 @@ class SketchCanvas
     @ctx.lineWidth = 5
     @ctx.lineCap = "round"
     
+    $(@canvas).on('clear', => @clear())
   
   drawBackground: ->
     @ctx.drawImage(@image, 0, 0)
